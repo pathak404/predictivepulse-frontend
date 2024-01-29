@@ -1,37 +1,19 @@
-import { FormEvent, useContext, useEffect, useRef, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import SectionHeader from "./SectionHeader";
 import InputGroup from "./InputGroup";
 import FormButton from "./FormButton";
 import { AiFillCheckCircle } from "react-icons/ai";
-import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import Lottie from "lottie-react";
 import successLottieJson from "../assets/success-lottie.json";
 import { AuthContext } from "../AuthContext";
 import { AuthContextType, CreateOrderApiResponseType, ToastContextType } from "../types";
 import { ToastContext } from "./toast/ToastContext";
 import { fetchFromServer } from "../helper";
+import { useSearchParams } from "react-router-dom";
 
 
-declare global {
-  interface Window {
-    Instamojo: any;
-  }
-}
 
 const Checkout = () => {
-  useEffect(()=> {
-    // Load Instamojo script
-    const script = document.createElement('script');
-    script.src = 'https://js.instamojo.com/v1/checkout.js';
-    script.onload = () => {
-      window.Instamojo.configure({
-        handlers: {
-          onSuccess: onSuccessHandler,
-          onFailure: onErrorHandler,
-        },
-      });
-    };
-    document.head.appendChild(script);
-  }, [])
 
   const pricingFeatures: string[] = [
     "Top 27 Indian Stocks Included",
@@ -44,10 +26,21 @@ const Checkout = () => {
   const {nonce} = useContext(AuthContext) as AuthContextType
   const { addToast } = useContext(ToastContext) as ToastContextType
   const [loading, setLoading] = useState<boolean>(false)
-  const lottieRef = useRef<LottieRefCurrentProps | null>(null)
   const [isActiveModal, setIsActiveModal] = useState<boolean>(false)
-  const order_id = useRef<string>("")
 
+  const [searchParams, setSearchParams] = useSearchParams()
+
+
+    if(searchParams.has("status")){
+      const status = searchParams.get("status")
+      if(status == "success"){
+        setIsActiveModal(true)
+      }else{
+        addToast("error", "Payment failed")
+      }
+      searchParams.delete("status")
+      setSearchParams(searchParams)
+    }
 
   const tenDigitOnly = (target: HTMLInputElement) => {
     const regex = /^[0-9]{10}$/;
@@ -70,31 +63,13 @@ const Checkout = () => {
     try{
       const res = await fetchFromServer<CreateOrderApiResponseType>('/create-order', 'POST', data)
       if(res && res.data){
-        order_id.current = res.data.order_id
-        window.Instamojo.open(res.data.longurl);
+        window.location.href = res.data.longurl;
       }
     }catch(error){
       addToast("error", (error as Error).message)
     }finally {
       setLoading(false)
     }
-  }
-
-  const onSuccessHandler = async ({paymentId}: {paymentId: any}) => {
-    window.Instamojo.close();
-    try{
-      if(await fetchFromServer('/payment', 'POST', {payment_id: paymentId, order_id: order_id.current})){
-        setIsActiveModal(true)
-        lottieRef.current?.play()
-      }
-    }catch(error){
-      addToast("error", (error as Error).message)
-    }
-  }
-
-  const onErrorHandler = () => {
-    window.Instamojo.close();
-    addToast("error", "Payment failed")
   }
 
 
@@ -104,11 +79,10 @@ const Checkout = () => {
       <div className={`fixed top-0 left-0 w-screen min-h-screen bg-white/20 z-50 items-center justify-center p-2 ${isActiveModal ? 'flex' : 'hidden'}`}>
         <div className="relative bg-white w-full max-w-[600px] h-auto min-h-[300px] shadow-lg rounded-md mx-auto flex flex-col items-center justify-center p-5 md:p-10">
           <Lottie
-            lottieRef={lottieRef}
             animationData={successLottieJson}
             className="w-3/5"
             loop={false}
-            autoplay={false}
+            autoplay={true}
           />
           <h2 className="font-Inter text-3xl font-bold my-3">Thank You</h2>
           <p className="font-Poppins text-base my-3">
