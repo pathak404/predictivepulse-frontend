@@ -129,7 +129,7 @@ const Checkout = () => {
       >
         <SectionHeader
           title="Pricing"
-          heading="A simple pricing that suite for everyone"
+          heading="A simple pricing that suites everyone"
           paragraph="Our advanced AI algorithms analyze market trends to provide accurate price predictions, empowering you to make informed decisions."
         />
 
