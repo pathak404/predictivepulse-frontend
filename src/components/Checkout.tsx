@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import SectionHeader from "./SectionHeader";
 import InputGroup from "./InputGroup";
 import FormButton from "./FormButton";
@@ -30,7 +30,7 @@ const Checkout = () => {
 
   const [searchParams, setSearchParams] = useSearchParams()
 
-
+  useEffect(()=>{
     if(searchParams.has("status")){
       const status = searchParams.get("status")
       if(status == "success"){
@@ -41,6 +41,8 @@ const Checkout = () => {
       searchParams.delete("status")
       setSearchParams(searchParams)
     }
+  }, [])
+
 
   const tenDigitOnly = (target: HTMLInputElement) => {
     const regex = /^[0-9]{10}$/;
