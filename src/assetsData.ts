@@ -10,6 +10,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "ADTB",
       TVsymbol: "BSE:ABCAPITAL",
+      YFsymbol: "ABCAPITAL.BO",
       image: "/images/stocks/ADTB.png",
     },
     {
@@ -20,6 +21,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "ACC",
       TVsymbol: "BSE:ACC",
+      YFsymbol: "ACC.BO",
       image: "/images/stocks/ACC.png",
     },
     {
@@ -30,6 +32,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "ADEL",
       TVsymbol: "BSE:ADANIENT",
+      YFsymbol: "ADANIENT.BO",
       image: "/images/stocks/ADANI.svg",
     },
     {
@@ -40,6 +43,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "ADAN",
       TVsymbol: "BSE:ADANIPOWER",
+      YFsymbol: "ADANIPOWER.BO",
       image: "/images/stocks/ADANI.svg",
     },
     {
@@ -50,6 +54,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "ABUJ",
       TVsymbol: "BSE:AMBUJACEM",
+      YFsymbol: "AMBUJACEM.BO",
       image: "/images/stocks/ambuja.webp",
     },
     {
@@ -60,6 +65,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "APLH",
       TVsymbol: "BSE:APOLLOHOSP",
+      YFsymbol: "APOLLOHOSP.BO",
       image: "/images/stocks/Apollo_Hospitals.svg",
     },
     {
@@ -70,18 +76,19 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "BRTI",
       TVsymbol: "BSE:AIRTELPP",
+      YFsymbol: "AIRTELPP.BO",
       image: "/images/stocks/bharti-airtel.jpg",
     },
-    {
-      name: "Tata Steel BSL",
-      full_name: "Tata Steel BSL Ltd",
-      isin: "INE824B01021",
-      id: 18044,
-      currency: "INR",
-      symbol: "TATS",
-      TVsymbol: "BSE:TATASTLBSL",
-      image: "/images/stocks/Tata-Steel-BSL.jpg",
-    },
+    // {
+    //   name: "Tata Steel BSL",
+    //   full_name: "Tata Steel BSL Ltd",
+    //   isin: "INE824B01021",
+    //   id: 18044,
+    //   currency: "INR",
+    //   symbol: "TATS",
+    //   TVsymbol: "BSE:TATASTLBSL",
+    //   image: "/images/stocks/Tata-Steel-BSL.jpg",
+    // },
     {
       name: "Bank Of Baroda",
       full_name: "Bank of Baroda Ltd",
@@ -90,6 +97,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "BOB",
       TVsymbol: "BSE:BANKBARODA",
+      YFsymbol: "BANKBARODA.BO",
       image: "/images/stocks/Bank-of-Baroda.jpg",
     },
     {
@@ -100,6 +108,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "CBI",
       TVsymbol: "BSE:CENTRALBK",
+      YFsymbol: "CENTRALBK.BO",
       image: "/images/stocks/cbi.webp",
     },
     {
@@ -110,6 +119,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "HDBK",
       TVsymbol: "BSE:HDFCBANK",
+      YFsymbol: "HDFCBANK.NS",
       image: "/images/stocks/hdfc.png",
     },
     {
@@ -120,6 +130,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "HROM",
       TVsymbol: "BSE:HEROMOTOCO",
+      YFsymbol: "HEROMOTOCO.BO",
       image: "/images/stocks/Hero_MotoCorp.svg",
     },
     {
@@ -130,6 +141,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "IOC",
       TVsymbol: "BSE:IOC",
+      YFsymbol: "IOC.BO",
       image: "/images/stocks/Indian_Oil.svg",
     },
     {
@@ -140,6 +152,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "ICBK",
       TVsymbol: "BSE:ICICIBANK",
+      YFsymbol: "ICICIBANK.BO",
       image: "/images/stocks/icici-bank.webp",
     },
     {
@@ -150,6 +163,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "JNSP",
       TVsymbol: "BSE:JINDALSTEL",
+      YFsymbol: "JINDALSTEL.BO",
       image: "/images/stocks/jindal.png",
     },
     {
@@ -160,6 +174,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "KTKM",
       TVsymbol: "BSE:KOTAKBANK",
+      YFsymbol: "KOTAKBANK.BO",
       image: "/images/stocks/kotak.jpg",
     },
     {
@@ -170,6 +185,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "MRF",
       TVsymbol: "BSE:MRF",
+      YFsymbol: "MRF.BO",
       image: "/images/stocks/Mrf.png",
     },
     {
@@ -180,6 +196,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "RLCM",
       TVsymbol: "BSE:RCOM",
+      YFsymbol: "RCOM.BO",
       image: "/images/stocks/reliance-communication.svg",
     },
     {
@@ -190,6 +207,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "RELI",
       TVsymbol: "BSE:RELIANCE",
+      YFsymbol: "RELIANCE.BO",
       image: "/images/stocks/reliance-industries.jpg",
     },
     {
@@ -200,6 +218,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "SBI",
       TVsymbol: "BSE:SBIN",
+      YFsymbol: "SBIN.BO",
       image: "/images/stocks/State_Bank_of_India.svg",
     },
     {
@@ -210,6 +229,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "TAJG",
       TVsymbol: "BSE:TAJGVK",
+      YFsymbol: "TAJGVK.NS",
       image: "/images/stocks/TAJGVK-Hotels-and-Resorts-Limited.jpg",
     },
     {
@@ -220,6 +240,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "TCS",
       TVsymbol: "BSE:TCS",
+      YFsymbol: "TCS.BO",
       image: "/images/stocks/tcs.png",
     },
     {
@@ -230,6 +251,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "TAMO",
       TVsymbol: "BSE:TATAMOTORS",
+      YFsymbol: "TATAMOTORS.BO",
       image: "/images/stocks/tata-motors.jpg",
     },
     {
@@ -240,6 +262,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "TISC",
       TVsymbol: "BSE:TATASTEEL",
+      YFsymbol: "TATASTEEL.BO",
       image: "/images/stocks/tata-steel.png",
     },
     {
@@ -250,6 +273,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "TEML",
       TVsymbol: "BSE:TECHM",
+      YFsymbol: "TECHM.BO",
       image: "/images/stocks/tech-mahindra.webp",
     },
     {
@@ -260,6 +284,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "TVSM",
       TVsymbol: "BSE:TVSMOTOR",
+      YFsymbol: "TVSMOTOR.BO",
       image: "/images/stocks/TVS_Motor_Company.jpg",
     },
     {
@@ -270,6 +295,7 @@ export const assetsData: AssetsDataType = {
       currency: "INR",
       symbol: "WIPR",
       TVsymbol: "BSE:WIPRO",
+      YFsymbol: "WIPRO.BO",
       image: "/images/stocks/Wipro.svg",
     },
   ],
@@ -281,6 +307,7 @@ export const assetsData: AssetsDataType = {
       symbol: "NSEI",
       currency: "INR",
       TVsymbol: undefined,
+      YFsymbol: "%5ENSEI",
       image: "/images/indices/Nifty_50.svg",
     },
     {
@@ -289,6 +316,7 @@ export const assetsData: AssetsDataType = {
       symbol: "NIFTY100",
       currency: "INR",
       TVsymbol: undefined,
+      YFsymbol: "NIFTY100_ESG.NS",
       image: "/images/indices/Nifty_100.jpg",
     },
     {
@@ -297,6 +325,7 @@ export const assetsData: AssetsDataType = {
       symbol: "BSECD",
       currency: "INR",
       TVsymbol: "BSE:CD",
+      YFsymbol: "BSE-CD.BO",
       image: null,
     },
     {
@@ -305,6 +334,7 @@ export const assetsData: AssetsDataType = {
       symbol: "BSESN",
       currency: "INR",
       TVsymbol: "BSE:SENSEX",
+      YFsymbol:"%5EBSESN",
       image: "/images/indices/BSE_Sensex.svg",
     },
     {
@@ -313,6 +343,7 @@ export const assetsData: AssetsDataType = {
       symbol: "SPBSESC",
       currency: "INR",
       TVsymbol: "BSE:SMLCAP",
+      YFsymbol: "BSE-SMLCAP.BO",
       image: null,
     },
     {
@@ -321,6 +352,7 @@ export const assetsData: AssetsDataType = {
       symbol: "SPBSEBH",
       currency: "INR",
       TVsymbol: "BSE:BHRT22",
+      YFsymbol: "BHRT22.BO",
       image: null,
     },
     {
@@ -329,6 +361,7 @@ export const assetsData: AssetsDataType = {
       symbol: "SPBSESNXT50",
       currency: "INR",
       TVsymbol: "BSE:SNXT50",
+      YFsymbol: "SNXT50.BO",
       image: "/images/indices/BSE_Sensex.svg",
     },
     {
@@ -337,6 +370,7 @@ export const assetsData: AssetsDataType = {
       symbol: "SPBSESN50",
       currency: "INR",
       TVsymbol: "BSE:SNSX50",
+      YFsymbol: "SNSX50.BO",
       image: "/images/indices/BSE_Sensex.svg",
     },
     {
@@ -345,6 +379,7 @@ export const assetsData: AssetsDataType = {
       symbol: "SPBIMIP",
       currency: "INR",
       TVsymbol: "BSE:MFG",
+      YFsymbol: "MFG.BO",
       image: null,
     },
     {
@@ -353,6 +388,7 @@ export const assetsData: AssetsDataType = {
       symbol: "NIFTYALI",
       currency: "INR",
       TVsymbol: undefined,
+      YFsymbol: "NIFTYALPHA50.NS",
       image: null,
     },
   ],

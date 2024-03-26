@@ -39,6 +39,7 @@ export type AssetsDataType = {
 
 type AssetsDataBaseType = {
     TVsymbol?: string,
+    YFsymbol?:string,
     symbol: string,
     name: string,
     id: number,
