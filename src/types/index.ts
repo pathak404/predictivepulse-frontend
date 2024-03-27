@@ -135,3 +135,18 @@ export type FeaturesType = {
     paragraph: string,
 }
 
+
+export type HistoricalDataItem = {
+    Date: string;
+    Open: number;
+    High: number;
+    Low: number;
+    Close: number;
+}
+
+export type PredictionDataItem = {
+    Open: number;
+    High: number;
+    Low: number;
+    Close: number;
+}
