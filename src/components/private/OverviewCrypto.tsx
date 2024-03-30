@@ -5,8 +5,8 @@ import { ApiResponse, HistoricalDataItem, PredictionDataItem, ToastContextType }
 import { ToastContext } from "../toast/ToastContext"
 import Loading from "../Loading"
 
-// for stock and indices
-const Overview:FC<{full_name?: string, name: string, symbol: string, YFsymbol: string, image: string|null }> = ({ full_name, name, symbol, YFsymbol, image }) => {
+// for crypto
+const OverviewCrypto:FC<{ name: string, symbol: string, YFsymbol: string, image: string|null }> = ({ name, symbol, YFsymbol, image }) => {
 
     const [latestData, setLatestData] = useState<HistoricalDataItem[]|undefined>()
     const [lastDayData, setLastDayData] = useState<HistoricalDataItem|undefined>()
@@ -14,13 +14,6 @@ const Overview:FC<{full_name?: string, name: string, symbol: string, YFsymbol: s
     const { addToast } = useContext(ToastContext) as ToastContextType
     const [loading, setLoading] = useState<boolean>(true)
 
-    const sourceTypeMapper = {
-        ".BO": "BSE",
-        ".NS": "NSE"
-    }
-
-    const sourceType: string = YFsymbol.includes(".BO") ? sourceTypeMapper[".BO"] : sourceTypeMapper[".NS"]
-  
     useEffect(() => {
       getLatestData();
     }, [])
@@ -56,10 +49,10 @@ const Overview:FC<{full_name?: string, name: string, symbol: string, YFsymbol: s
             <div className="pt-2 md:pt-5 mb-10">
                 <div className="inline-flex gap-3 items-center">
                     {image ? <img src={image} alt="asset image" className="rounded-full border-2 border-gray-200 w-16 h-16 md:h-[80px] md:w-[80px] p-0.5"/> : <p className="rounded-full bg-slate-100 p-4 text-xl font-bold font-Poppins">{acronym(name)}</p>}
-                    <h6 className="text-xl md:text-4xl font-Inter font-semibold">{full_name || name} ({symbol})</h6>
+                    <h6 className="text-xl md:text-4xl font-Inter font-semibold">{name} ({symbol})</h6>
                 </div>
-                <p className="text-base font-Poppins font-medium mt-2">👉 The prediction is based on five years of data taken from {sourceType}. </p>
-                <p className="text-base font-Poppins font-medium mt-2">💸 The price mentioned below is in INR (Indian currency ₹). </p>
+                <p className="text-base font-Poppins font-medium mt-2">👉 The prediction is based on five years of data. </p>
+                <p className="text-base font-Poppins font-medium mt-2">💸 The price mentioned below is in USD. </p>
             </div>
             <h1 className="text-3xl font-Poppins font-medium mb-7">Prediction</h1>
             <div className="block md:flex max-w-[700px] mb-7">
@@ -84,4 +77,4 @@ const Overview:FC<{full_name?: string, name: string, symbol: string, YFsymbol: s
     )
 }
 
-export default Overview
+export default OverviewCrypto

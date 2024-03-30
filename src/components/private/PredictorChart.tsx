@@ -47,7 +47,10 @@ const PredictorChart: FC<{ latestData: HistoricalDataItem[], prediction: Predict
     yaxis: {
       labels: {
           formatter: function(value: number) {
+            if(value.toFixed(0).toString().length > 3){
               return value.toFixed(0);
+            }
+            return value.toFixed(2);
           },
           style: {
               fontSize: '12px',

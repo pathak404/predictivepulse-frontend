@@ -404,6 +404,7 @@ export const assetsData: AssetsDataType = {
       second_name: "US Dollar",
       second_image: "/images/currency-cross/USD.svg",
       TVsymbol: "FX:AUDUSD",
+      YFsymbol: "AUDUSD=X",
     },
     {
       name: "USD/AUD",
@@ -416,6 +417,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Australian Dollar",
       second_image: "/images/currency-cross/AUD.svg",
       TVsymbol: "SAXO:USDAUD",
+      YFsymbol: "AUD=X",
     },
     {
       name: "EUR/AUD",
@@ -428,6 +430,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Australian Dollar",
       second_image: "/images/currency-cross/AUD.svg",
       TVsymbol: "FX:EURAUD",
+      YFsymbol: "EURAUD=X",
     },
     {
       name: "AUD/EUR",
@@ -440,6 +443,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Euro",
       second_image: "/images/currency-cross/EUR.png",
       TVsymbol: "SAXO:AUDEUR",
+      YFsymbol: "AUDEUR=X",
     },
     {
       name: "AUD/CAD",
@@ -452,6 +456,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Canadian Dollar",
       second_image: "/images/currency-cross/CAD.svg",
       TVsymbol: "FX:AUDCAD",
+      YFsymbol: "AUDCAD=X",
     },
     {
       name: "CAD/AUD",
@@ -464,6 +469,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Australian Dollar",
       second_image: "/images/currency-cross/AUD.svg",
       TVsymbol: "FX_IDC:CADAUD",
+      YFsymbol: "CADAUD=X",
     },
     {
       name: "AUD/CHF",
@@ -476,6 +482,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Swiss Franc",
       second_image: "/images/currency-cross/CHF.svg",
       TVsymbol: "FX:AUDCHF",
+      YFsymbol: "AUDCHF=X",
     },
     {
       name: "CHF/AUD",
@@ -488,6 +495,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Australian Dollar",
       second_image: "/images/currency-cross/AUD.svg",
       TVsymbol: "SAXO:CHFAUD",
+      YFsymbol: "CHFAUD=X",
     },
     {
       name: "AUD/JPY",
@@ -500,6 +508,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Japanese Yen",
       second_image: "/images/currency-cross/JPY.png",
       TVsymbol: "FX:AUDJPY",
+      YFsymbol: "AUDJPY=X",
     },
     {
       name: "JPY/AUD",
@@ -512,6 +521,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Australian Dollar",
       second_image: "/images/currency-cross/AUD.svg",
       TVsymbol: "FX_IDC:JPYAUD",
+      YFsymbol: "JPYAUD=X",
     },
     {
       name: "USD/JPY",
@@ -524,6 +534,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Japanese Yen",
       second_image: "/images/currency-cross/JPY.png",
       TVsymbol: "FX:USDJPY",
+      YFsymbol: "JPY=X",
     },
     {
       name: "JPY/USD",
@@ -536,6 +547,7 @@ export const assetsData: AssetsDataType = {
       second_name: "US Dollar",
       second_image: "/images/currency-cross/USD.svg",
       TVsymbol: "SAXO:JPYUSD",
+      YFsymbol: "JPYUSD=X",
     },
     {
       name: "USD/CAD",
@@ -548,6 +560,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Canadian Dollar",
       second_image: "/images/currency-cross/CAD.svg",
       TVsymbol: "FX:USDCAD",
+      YFsymbol: "CAD=X",
     },
     {
       name: "CAD/USD",
@@ -560,6 +573,7 @@ export const assetsData: AssetsDataType = {
       second_name: "US Dollar",
       second_image: "/images/currency-cross/USD.svg",
       TVsymbol: "SAXO:CADUSD",
+      YFsymbol: "CADUSD=X",
     },
     {
       name: "EUR/USD",
@@ -572,6 +586,7 @@ export const assetsData: AssetsDataType = {
       second_name: "US Dollar",
       second_image: "/images/currency-cross/USD.svg",
       TVsymbol: "FX:EURUSD",
+      YFsymbol: "EURUSD=X",
     },
     {
       name: "USD/EUR",
@@ -584,6 +599,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Euro",
       second_image: "/images/currency-cross/EUR.png",
       TVsymbol: "BITTREX:USDEUR",
+      YFsymbol: "EUR=X",
     },
     {
       name: "USD/INR",
@@ -596,6 +612,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Indian Rupee",
       second_image: "/images/currency-cross/INR.svg",
       TVsymbol: "VANTAGE:USDINR",
+      YFsymbol: "INR=X",
     },
     {
       name: "INR/USD",
@@ -608,6 +625,7 @@ export const assetsData: AssetsDataType = {
       second_name: "US Dollar",
       second_image: "/images/currency-cross/USD.svg",
       TVsymbol: "FX_IDC:INRUSD",
+      YFsymbol: "INRUSD=X",
     },
     {
       name: "EUR/JPY",
@@ -620,6 +638,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Japanese Yen",
       second_image: "/images/currency-cross/JPY.png",
       TVsymbol: "FX:EURJPY",
+      YFsymbol: "EURJPY=X",
     },
     {
       name: "JPY/EUR",
@@ -632,6 +651,7 @@ export const assetsData: AssetsDataType = {
       second_name: "Euro",
       second_image: "/images/currency-cross/EUR.png",
       TVsymbol: "SAXO:JPYEUR",
+      YFsymbol: "JPYEUR=X",
     },
   ],
   crypto_currencies: [
@@ -641,7 +661,8 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BITSTAMP:BTCUSD",
       id: 1057391,
       currency: "USD",
-      image: "/images/crypto/Bitcoin.svg"
+      image: "/images/crypto/Bitcoin.svg",
+      YFsymbol: "BTC-USD",
     },
     {
       name: "Ethereum",
@@ -649,23 +670,25 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BITSTAMP:ETHUSD",
       id: 1061443,
       currency: "USD",
-      image: "/images/crypto/Ethereum.svg"
+      image: "/images/crypto/Ethereum.svg",
+      YFsymbol: "ETH-USD",
     },
-    {
-      name: "Binance Coin",
-      symbol: "BNB",
-      TVsymbol: "BINANCE:BNBUSD",
-      id: 1061448,
-      currency: "USD",
-      image: "/images/crypto/Binance-coin.png"
-    },
+    // {
+    //   name: "Binance Coin",
+    //   symbol: "BNB",
+    //   TVsymbol: "BINANCE:BNBUSD",
+    //   id: 1061448,
+    //   currency: "USD",
+    //   image: "/images/crypto/Binance-coin.png"
+    // },
     {
       name: "Tether",
       symbol: "USDT",
       TVsymbol: "BITSTAMP:USDTUSD",
       id: 1061453,
       currency: "USD",
-      image: "/images/crypto/tether.png"
+      image: "/images/crypto/tether.png",
+      YFsymbol: "USDT-USD",
     },
     {
       name: "Cardano",
@@ -673,7 +696,8 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BITSTAMP:ADAUSD",
       id: 1062537,
       currency: "USD",
-      image: "/images/crypto/Cardano.png"
+      image: "/images/crypto/Cardano.png",
+      YFsymbol: "ADA-USD",
     },
     {
       name: "Dogecoin",
@@ -681,7 +705,8 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BITSTAMP:DOGEUSD",
       id: 1061477,
       currency: "USD",
-      image: "/images/crypto/Dogecoin.png"
+      image: "/images/crypto/Dogecoin.png",
+      YFsymbol: "DOGE-USD",
     },
     {
       name: "Solana",
@@ -689,7 +714,8 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BITSTAMP:SOLUSD",
       id: 1161528,
       currency: "USD",
-      image: "/images/crypto/Solana.png"
+      image: "/images/crypto/Solana.png",
+      YFsymbol: "SOL-USD",
     },
     {
       name: "SushiSwap",
@@ -697,7 +723,8 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BITSTAMP:SUSHIUSD",
       id: 1168117,
       currency: "USD",
-      image: "/images/crypto/sushiswap.svg"
+      image: "/images/crypto/sushiswap.svg",
+      YFsymbol: "SUSHI-USD",
     },
     {
       name: "Dash",
@@ -705,7 +732,8 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BITFINEX:DSHUSD",
       id: 1061456,
       currency: "USD",
-      image: "/images/crypto/dash.png"
+      image: "/images/crypto/dash.png",
+      YFsymbol: "DASH-USD",
     },
     {
       name: "Theta Fuel",
@@ -713,7 +741,8 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BINANCE:TFUELUSD",
       id: 1138421,
       currency: "USD",
-      image: "/images/crypto/theta-fuel.svg"
+      image: "/images/crypto/theta-fuel.svg",
+      YFsymbol: "TFUEL-USD",
     },
     {
       name: "The Graph",
@@ -721,7 +750,8 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BITSTAMP:GRTUSD",
       id: 1168375,
       currency: "USD",
-      image: "/images/crypto/the-graph.svg"
+      image: "/images/crypto/the-graph.svg",
+      YFsymbol: "GRT6719-USD",
     },
     {
       name: "Polygon",
@@ -729,7 +759,8 @@ export const assetsData: AssetsDataType = {
       TVsymbol: "BITSTAMP:MATICUSD",
       id: 1138411,
       currency: "USD",
-      image: "/images/crypto/polygon.svg"
+      image: "/images/crypto/polygon.svg",
+      YFsymbol: "MATIC-USD",
     }
   ]
 };
