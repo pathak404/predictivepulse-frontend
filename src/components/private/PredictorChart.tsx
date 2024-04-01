@@ -1,7 +1,8 @@
 import { FC } from "react"
-import Chart from "react-apexcharts"
+// import Chart from "react-apexcharts"
 import { ApexOptions } from 'apexcharts'
 import { HistoricalDataItem, PredictionDataItem } from "../../types"
+import ReactApexChart from "react-apexcharts"
 
 
 // for stocks & Indices
@@ -10,7 +11,7 @@ const PredictorChart: FC<{ latestData: HistoricalDataItem[], prediction: Predict
 
 
   // Determine the minimum and maximum values for the y-axis
-  let labelCount = 29;
+  // let labelCount = 29;
   // if(latestData){
   //   const minValue = Math.min(...latestData?.map(dataItem => dataItem?.Low, prediction?.Low));
   //   const maxValue = Math.max(...latestData?.map(dataItem => dataItem?.High, prediction?.High));
@@ -56,7 +57,7 @@ const PredictorChart: FC<{ latestData: HistoricalDataItem[], prediction: Predict
               fontSize: '12px',
           },
       },
-      tickAmount: labelCount,
+      // tickAmount: labelCount,
     },
     annotations: {
       points: [
@@ -126,9 +127,13 @@ const PredictorChart: FC<{ latestData: HistoricalDataItem[], prediction: Predict
     },
   ] : [];
 
+
+
+
   return (
     <div className="-ml-4 md:-ml-0">
-      <Chart options={options} series={series} type="candlestick" />
+      {/* <Chart options={options} series={series} type="candlestick" /> */}
+      <ReactApexChart series={series} type="candlestick" options={options}/>
     </div>
   )
 }
