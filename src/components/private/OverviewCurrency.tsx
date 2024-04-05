@@ -4,17 +4,37 @@ import PredictorChart from "./PredictorChart"
 import { ApiResponse, HistoricalDataItem, PredictionDataItem, ToastContextType } from "../../types"
 import { ToastContext } from "../toast/ToastContext"
 import Loading from "../Loading"
+import { BiSolidError } from "react-icons/bi"
 
 // for currency
 const OverviewCurrency:FC<{name: string, base_name: string, base_image: string, second_name: string, second_image: string, YFsymbol: string }> = ({ name, base_name, base_image , second_name, second_image, YFsymbol}) => {
 
     const [latestData, setLatestData] = useState<HistoricalDataItem[]|undefined>()
     const [lastDayData, setLastDayData] = useState<HistoricalDataItem|undefined>()
+    const [isLastDayData, setIsLastDayData] = useState<boolean>(true)
     const [prediction, setPrediction] = useState<PredictionDataItem|undefined>()
     const { addToast } = useContext(ToastContext) as ToastContextType
     const [loading, setLoading] = useState<boolean>(true)
 
   
+    const isPreviousDayData = () => {
+      let today = new Date();
+      let yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      if(lastDayData){
+        let lastDayDataDate = new Date(lastDayData.Date);
+        let isPreviousDay = today.getFullYear() === lastDayDataDate.getFullYear() &&
+                            today.getMonth() === lastDayDataDate.getMonth() &&
+                            today.getDate() - 1 === lastDayDataDate.getDate();
+        setIsLastDayData(isPreviousDay);
+      }
+    }
+
+    useEffect(()=>{
+      isPreviousDayData();
+    }, [lastDayData])
+
+
     useEffect(() => {
       getLatestData();
     }, [])
@@ -60,14 +80,21 @@ const OverviewCurrency:FC<{name: string, base_name: string, base_image: string, 
                 </div>
             </div>
             <h1 className="text-3xl font-Poppins font-medium mb-7">Prediction</h1>
-            <div className="block md:flex max-w-[700px] mb-7">
+            <div className="block md:flex max-w-[700px] mb-7 md:gap-5">
+            { !isLastDayData ? 
+                <div className="basis-1/2 space-y-2 mb-7 p-3 md:mb-0 bg-red-500 rounded-md">
+                  <div className="w-full h-full flex flex-col items-center justify-center">
+                    <BiSolidError className="text-white w-8 h-8" />
+                    <p className="text-sm font-Poppins font-medium mt-2 text-white text-center"> Previous day data is not currently available. This could be due to a holiday or it not being provided by the data provider.</p>
+                  </div>
+                </div> :
                 <div className="basis-1/2 space-y-2 mb-7 md:mb-0">
                     <h1 className="text-xl font-Poppins font-medium mb-2">Last ({new Date(lastDayData.Date).getDate()} {new Date(lastDayData.Date).toLocaleString('default', { month: 'long' })}) Summary</h1>
                     <h2 className="text-slate-700 text-base font-Poppins font-medium">Open: {lastDayData.Open.toFixed(3)}</h2>
                     <h2 className="text-slate-700 text-base font-Poppins font-medium">High: {lastDayData.High.toFixed(3)}</h2>
                     <h2 className="text-slate-700 text-base font-Poppins font-medium">Low: {lastDayData.Low.toFixed(3)}</h2>
                     <h2 className="text-slate-700 text-base font-Poppins font-medium">Close (Last Price): {lastDayData.Close.toFixed(3)}</h2>
-                </div>
+                </div> }
                 <div className="basis-1/2 space-y-2">
                     <h1 className="text-xl font-Poppins font-medium mb-2">Today's Prediction</h1>
                     <h2 className="text-slate-700 text-base font-Poppins font-medium">Open: {prediction.Open.toFixed(3)}</h2>
