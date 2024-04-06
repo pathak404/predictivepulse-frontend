@@ -73,10 +73,10 @@ const PredictorChart: FC<{ latestData: HistoricalDataItem[], prediction: Predict
               label: {
                   text: 'Prediction',
                   borderColor: '#00000000',
-                  offsetY: window.innerWidth <= 768 ? 10 : 30,
+                  offsetY: 10,
                   style: {
                       background: 'transparent',
-                      color: '#000',
+                      color: '#000000',
                       fontSize: '11.5px',
                       fontWeight: '600',
                       padding: {
