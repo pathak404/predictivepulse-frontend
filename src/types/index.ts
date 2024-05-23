@@ -98,30 +98,12 @@ export type PredictionMapperType = {
 }
 
 
-
-export type AuthContextType = {
-    isLoggedIn: boolean | null;
-    setIsLoggedIn: Dispatch<SetStateAction<boolean | null>>
-    logout: () => void;
-    nonce: string,
-    setNonce: Dispatch<SetStateAction<string>>
-}
-
-
 export type ApiResponse<T = Record<string, unknown>> = {
     status: string;
     message: string;
-    data?: T;
-};
+} & T;
 
-export type LoginApiResponseType = {
-    status: string;
-    message: string;
-    isLoggedIn: boolean;
-    nonce: string;
-};
-
-export type CreateOrderApiResponseType = {
+export type orderApiResponse = {
     status: string;
     message: string;
     longurl: string;

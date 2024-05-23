@@ -43,19 +43,21 @@ const OverviewCrypto:FC<{ name: string, symbol: string, YFsymbol: string, image:
       try {
         const [latestData, prediction] = await Promise.all([
           fetchFromServer<ApiResponse>(
-            "/latest-data/" + YFsymbol
+            "/asset/data/" + YFsymbol,
+            true,
           ),
           fetchFromServer<ApiResponse>(
-            "/predictAI/" + YFsymbol
+            "/asset/prediction/" + YFsymbol,
+            true,
           ),
         ]);
         
-        const responseData = latestData?.data?.data;
+        const responseData = latestData?.data;
         if (Array.isArray(responseData)) {
           setLatestData(responseData as HistoricalDataItem[]);
           setLastDayData(responseData[responseData.length - 1]);
         }
-        setPrediction(prediction?.data?.data as PredictionDataItem);
+        setPrediction(prediction?.data as PredictionDataItem);
       } catch (err: any) {
         addToast("error", err.message);
       } finally {

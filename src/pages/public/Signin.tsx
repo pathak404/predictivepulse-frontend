@@ -4,19 +4,18 @@ import InputGroup from "../../components/InputGroup"
 import Layout from "./Layout"
 import { useNavigate } from "react-router-dom"
 import { ToastContext } from "../../components/toast/ToastContext"
-import { AuthContextType, LoginApiResponseType, ToastContextType } from "../../types"
+import { ApiResponse, ToastContextType } from "../../types"
 import { fetchFromServer } from "../../helper"
-import { AuthContext } from "../../AuthContext"
-
+import useNonce from "../../useNonce"
 
 const Signin: React.FC = () => {
-  const {isLoggedIn, setIsLoggedIn, nonce, setNonce} = useContext(AuthContext) as AuthContextType
   const navigate = useNavigate()
   const [loading, setLoading] = useState<boolean>(false)
   const { addToast } = useContext(ToastContext) as ToastContextType
+  const {nonce, error, refresh} = useNonce()
 
   useEffect(() => {
-    if(isLoggedIn){
+    if(localStorage.getItem("token")){
       navigate('/')
     }
   }, [])
@@ -30,6 +29,12 @@ const Signin: React.FC = () => {
       data[key] = val as string;
     })
 
+    if(error){
+      addToast("error", error as string)
+      setLoading(false)
+      return;
+    }
+
     if(data.password.length < 8){
       addToast("error", "Password should be 8 characters long.")
       setLoading(false)
@@ -37,17 +42,17 @@ const Signin: React.FC = () => {
     }
 
     try{
-      const res = await fetchFromServer<LoginApiResponseType>('/login', 'POST', data)
-      if(res && res.data){
+      const res = await fetchFromServer<ApiResponse<{token: string}>>('/login', false, 'POST', data, nonce)
+      if(res && res.status){
         addToast("success", res.message)
-        setIsLoggedIn(true)
-        setNonce(res.data.nonce)
-        navigate("/")
+        localStorage.setItem("token", res.token)
+        navigate(0)
       }
     }catch(error){
       addToast("error", (error as Error).message)
     }finally{
       setLoading(false)
+      refresh()
     }
   }
 
@@ -58,7 +63,6 @@ const Signin: React.FC = () => {
         <h3 className='font-semibold text-2xl mb-8'>Sign in to your account</h3>
         <InputGroup type='email' label='Email Address' name='email' />
         <InputGroup type='password' label='Password' name='password' />
-        <InputGroup type="hidden" name="nonce" value={nonce} />
         <FormButton loading={loading} arrow>Sign In</FormButton>
       </form>
     </div>

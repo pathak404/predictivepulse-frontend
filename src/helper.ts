@@ -11,16 +11,25 @@ export const getSymbol = (str: string): string => str.split(":")[1];
 
 export const fetchFromServer = async <T = Record<string, unknown>>(
   path: string,
+  isAuth: boolean = false,
   method: string = "GET",
-  body?: Object
+  body?: Record<string, any>,
+  nonce?: string,
 ): Promise<ApiResponse<T>> => {
   try {
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
-    };
+    }
+    if(isAuth){
+      const token = localStorage.getItem("token")
+      if(!token) throw new Error("Auth:JWT not exist")
+      headers["Authorization"] = "Bearer "+token
+    }
+    if(nonce){
+      headers['X-Nonce'] = nonce
+    }
     const options: RequestInit = {
       method,
-      credentials: "include",
       cache: "no-cache",
       headers,
     };
@@ -32,12 +41,11 @@ export const fetchFromServer = async <T = Record<string, unknown>>(
 
     if (!response.ok) {
       const errorResponse = await response.json();
-      throw new Error(`${response.statusText} ${errorResponse.message}`);
+      throw new Error(errorResponse?.message || response.statusText);
     }
 
     const jsonResponse = await response.json();
-    const { status, message, ...data } = jsonResponse;
-    return { status, message, data } as ApiResponse<T>;
+    return jsonResponse as ApiResponse<T>;
 
   } catch (error) {
     throw error;

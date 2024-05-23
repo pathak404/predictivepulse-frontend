@@ -8,9 +8,10 @@ import { ToastContextType } from "../../types"
 import { fetchFromServer } from "../../helper"
 import { PiCheckCircleFill, PiWarningCircleFill } from "react-icons/pi"
 import Loading from "../../components/Loading"
+import useNonce from "../../useNonce"
 
 
-const CreatePassword: React.FC<{isLoggedIn: boolean|null, nonce: string}> = ({isLoggedIn, nonce}) => {
+const CreatePassword: React.FC = () => {
   const { key } = useParams<{key: string}>()
   const navigate = useNavigate()
   const [loading, setLoading] = useState<boolean>(false)
@@ -18,9 +19,10 @@ const CreatePassword: React.FC<{isLoggedIn: boolean|null, nonce: string}> = ({is
 
   const [response, setResponse] = useState<{status: string, message: string} | null>(null);
   const [isKeyCheck, setIsKeyCheck] = useState<boolean>(false)
+  const {nonce, error, refresh} = useNonce()
 
   useEffect(() => {
-    if(isLoggedIn){
+    if(localStorage.getItem("token")){
       navigate('/')
     }
     checkKey()
@@ -28,7 +30,7 @@ const CreatePassword: React.FC<{isLoggedIn: boolean|null, nonce: string}> = ({is
 
   const checkKey = async () => {
     try{
-      await fetchFromServer('/change-password/'+key)
+      await fetchFromServer('/create-password/'+key)
     }catch(error){
       setResponse({
         status: "error",
@@ -48,6 +50,12 @@ const CreatePassword: React.FC<{isLoggedIn: boolean|null, nonce: string}> = ({is
       data[key] = val as string;
     })
 
+    if(error){
+      addToast("error", error as string)
+      setLoading(false)
+      return;
+    }
+
     if(data.password.length < 8){
       addToast("error", "Password should be 8 characters long.")
       setLoading(false)
@@ -58,14 +66,18 @@ const CreatePassword: React.FC<{isLoggedIn: boolean|null, nonce: string}> = ({is
       setLoading(false)
       return;
     }
+
+    delete data.cpassword
+
     try{
-      const res = await fetchFromServer('/change-password/'+key, 'POST', data)
-      if(res && res.data){
+      const res = await fetchFromServer('/create-password/'+key, false, 'POST', data, nonce)
+      if(res && res.status){
         addToast("success", res.message)
         setResponse({
           status: "success",
           message: res.message
         })
+        navigate("/sign-in")
       } 
     }catch(error){
       setResponse({
@@ -74,6 +86,7 @@ const CreatePassword: React.FC<{isLoggedIn: boolean|null, nonce: string}> = ({is
       })
     }finally{
       setLoading(false)
+      refresh()
     }
   }
 
@@ -84,7 +97,6 @@ const CreatePassword: React.FC<{isLoggedIn: boolean|null, nonce: string}> = ({is
         <h3 className='font-semibold text-2xl mb-8'>Create Password</h3>
         <InputGroup type='text' label='Password' name='password' />
         <InputGroup type='password' label='Confirm Password' name='cpassword' />
-        <InputGroup type="hidden" name="nonce" value={nonce} />
         <FormButton loading={loading} arrow>Set Password</FormButton>
       </form>:
       <div className='w-full p-6 sm:p-10 shadow-xl rounded-lg flex flex-col items-center justify-center gap-4'>

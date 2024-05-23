@@ -1,16 +1,14 @@
 import { Link, NavLink, useNavigate } from "react-router-dom"
-import { AuthContextType, ToastContextType, navItemType } from "../../types"
+import { ToastContextType, navItemType } from "../../types"
 import { BsCurrencyBitcoin, BsCurrencyExchange, BsBoxArrowLeft } from "react-icons/bs"
 import { GoHomeFill } from "react-icons/go"
 import { RiStockFill } from "react-icons/ri"
 import { AiFillSignal } from "react-icons/ai"
 import { RefObject, memo, useContext } from "react"
-import { AuthContext } from "../../AuthContext"
 import { ToastContext } from "../toast/ToastContext"
 
 const Sidebar: React.FC<{isOpen: boolean, sidebarRef: RefObject<HTMLDivElement>}> = ({isOpen, sidebarRef}) => {
   const navigate = useNavigate()
-  const {logout} = useContext(AuthContext) as AuthContextType
   const { addToast } = useContext(ToastContext) as ToastContextType
 
   const navItems: navItemType[] = [
@@ -42,7 +40,7 @@ const Sidebar: React.FC<{isOpen: boolean, sidebarRef: RefObject<HTMLDivElement>}
   ]
 
   const logoutHandler = () => {
-    logout()
+    localStorage.removeItem("token")
     addToast("success", "Logout successful")
     navigate('/')
   }

@@ -1,21 +1,17 @@
-import React, { ReactNode, useContext, useEffect, useRef, useState } from "react"
+import React, { ReactNode, useEffect, useRef, useState } from "react"
 import Sidebar from "../../components/private/Sidebar"
 import { HiMenuAlt2 } from "react-icons/hi"
-import { AuthContext } from "../../AuthContext"
-import { AuthContextType } from "../../types"
 import { useNavigate } from "react-router-dom"
 
 const ProtectedLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const {isLoggedIn, logout} = useContext(AuthContext) as AuthContextType
     const navigate = useNavigate()
-
+    const isLoggedIn = localStorage.getItem("token")
     const [sidebarStatus, setSidebarStatus] = useState<boolean>(false)
     const sidebarRef = useRef<HTMLDivElement>(null)
 
     
     useEffect(() => {
         if(!isLoggedIn){
-            logout()
             navigate("/")
         }
     }, [])
@@ -41,7 +37,7 @@ const ProtectedLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
 
     return (
-        isLoggedIn && <>
+          isLoggedIn && <>
             <Sidebar isOpen={sidebarStatus} sidebarRef={sidebarRef} />
             <div className="bg-slate-50 p-4 md:ml-64 md:ps-8 min-h-screen">
               <div className="w-full mb-10 block md:hidden">

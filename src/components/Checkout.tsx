@@ -1,17 +1,20 @@
-import { FormEvent, useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import SectionHeader from "./SectionHeader";
 import InputGroup from "./InputGroup";
 import FormButton from "./FormButton";
 import { AiFillCheckCircle } from "react-icons/ai";
-import Lottie from "lottie-react";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import successLottieJson from "../assets/success-lottie.json";
-import { AuthContext } from "../AuthContext";
-import { AuthContextType, CreateOrderApiResponseType, ToastContextType } from "../types";
+import { orderApiResponse, ToastContextType } from "../types";
 import { ToastContext } from "./toast/ToastContext";
 import { fetchFromServer } from "../helper";
-import { useSearchParams } from "react-router-dom";
+import useNonce from "../useNonce";
 
-
+declare global {
+  interface Window {
+    Instamojo: any;
+  }
+}
 
 const Checkout = () => {
 
@@ -23,25 +26,25 @@ const Checkout = () => {
     "Support through Whatsapp",
   ];
 
-  const {nonce} = useContext(AuthContext) as AuthContextType
+  const {nonce, error, refresh} = useNonce()
   const { addToast } = useContext(ToastContext) as ToastContextType
   const [loading, setLoading] = useState<boolean>(false)
   const [isActiveModal, setIsActiveModal] = useState<boolean>(false)
+  const lottieRef = useRef<LottieRefCurrentProps | null>(null);
 
-  const [searchParams, setSearchParams] = useSearchParams()
-
-  useEffect(()=>{
-    if(searchParams.has("status")){
-      const status = searchParams.get("status")
-      if(status == "success"){
-        setIsActiveModal(true)
-      }else{
-        addToast("error", "Payment failed")
-      }
-      searchParams.delete("status")
-      setSearchParams(searchParams)
-    }
-  }, [])
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://js.instamojo.com/v1/checkout.js";
+    script.onload = () => {
+      window.Instamojo.configure({
+        handlers: {
+          onSuccess: onSuccessHandler,
+          onFailure: onErrorHandler,
+        },
+      });
+    };
+    document.head.appendChild(script);
+  }, []);
 
 
   const tenDigitOnly = (target: HTMLInputElement) => {
@@ -52,7 +55,6 @@ const Checkout = () => {
   };
 
 
-
   const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setLoading(true);
@@ -61,18 +63,42 @@ const Checkout = () => {
     formData.forEach((val,key) => {
       data[key] = val as string
     })
-
+    if(error){
+      addToast("error", error as string)
+      setLoading(false)
+      return;
+    }
+    console.log(error)
     try{
-      const res = await fetchFromServer<CreateOrderApiResponseType>('/create-order', 'POST', data)
-      if(res && res.data){
-        window.location.href = res.data.longurl;
+      const res = await fetchFromServer<orderApiResponse>('/order', false, 'POST', data, nonce)
+      if(res && res.status){
+        window.Instamojo.open(res.longurl)
       }
     }catch(error){
       addToast("error", (error as Error).message)
     }finally {
       setLoading(false)
+      refresh()
     }
   }
+
+
+  const onSuccessHandler = async ({ paymentId }: { paymentId: any }) => {
+    window.Instamojo.close();
+    try {
+      if (await fetchFromServer("/order/" + paymentId)) {
+        setIsActiveModal(true);
+        lottieRef.current?.play();
+      }
+    } catch (error) {
+      addToast("error", (error as Error).message);
+    }
+  };
+
+  const onErrorHandler = () => {
+    window.Instamojo.close();
+    addToast("error", "Payment failed");
+  };
 
 
   return (
@@ -84,7 +110,8 @@ const Checkout = () => {
             animationData={successLottieJson}
             className="w-3/5"
             loop={false}
-            autoplay={true}
+            autoplay={false}
+            lottieRef={lottieRef}
           />
           <h2 className="font-Inter text-3xl font-bold my-3">Thank You</h2>
           <p className="font-Poppins text-base my-3">
@@ -149,11 +176,6 @@ const Checkout = () => {
                 label="Phone Number (+91)"
                 placeholder="1234567890"
                 handler={(e) => tenDigitOnly(e.target as HTMLInputElement)}
-              />
-              <InputGroup
-                type="hidden"
-                name="nonce"
-                value={nonce}
               />
               <FormButton loading={loading} arrow>
                 Let&apos;s Start
